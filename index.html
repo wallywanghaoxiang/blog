@@ -177,104 +177,78 @@
 <p><a href="https://www.jianshu.com/p/12fc7a0607ed" target="_blank" rel="noopener">https://www.jianshu.com/p/12fc7a0607ed</a></p>
 <h3 id="4-react注意点"><a href="#4-react注意点" class="headerlink" title="4. react注意点"></a>4. react注意点</h3><p><a href="https://www.runoob.com/react/react-component-api.html" target="_blank" rel="noopener">https://www.runoob.com/react/react-component-api.html</a></p>
 <h5 id="1-jsx语法"><a href="#1-jsx语法" class="headerlink" title="1. jsx语法"></a>1. jsx语法</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">jsx: const element &#x3D; &lt;h1&gt;Hello, world!&lt;&#x2F;h1&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">##### 2. 用ReactDOM.render 挂载到 节点上</span><br><span class="line">		 </span><br><span class="line">例子:</span><br><span class="line">   </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<body>
-                 <div id="root"></div>
-
-<pre><code>&lt;script type=&quot;text/babel&quot;&gt;
-
-   const element = &lt;h1 className=&quot;foo&quot;&gt;Hello, world&lt;/h1&gt;;
-
-   ReactDOM.render(element, document.getElementById(&apos;root&apos;));
-
-&lt;/script&gt;</code></pre></body>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsx: const element &#x3D; &lt;h1&gt;Hello, world!&lt;&#x2F;h1&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h5 id="3-state-与-prop的区别"><a href="#3-state-与-prop的区别" class="headerlink" title="3. state 与 prop的区别"></a>3. state 与 prop的区别</h5><blockquote>
-<p>setState触发渲染<br>this.state 更新不会触发渲染，用forceUpdate 强制触发重绘</p>
+<h5 id="2-用ReactDOM-render-挂载到-节点上"><a href="#2-用ReactDOM-render-挂载到-节点上" class="headerlink" title="2. 用ReactDOM.render 挂载到 节点上"></a>2. 用ReactDOM.render 挂载到 节点上</h5><blockquote>
+<p>例子:</p>
 </blockquote>
-<h5 id="4-state-与-prop触发更新可能是异步"><a href="#4-state-与-prop触发更新可能是异步" class="headerlink" title="4. state 与 prop触发更新可能是异步"></a>4. state 与 prop触发更新可能是异步</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; Wrong</span><br><span class="line">	</span><br><span class="line">        this.setState(&#123;</span><br><span class="line">            counter: this.state.counter+this.props.increment,</span><br><span class="line">        &#125;);</span><br><span class="line">     </span><br><span class="line">    </span><br><span class="line">        </span><br><span class="line">    &#x2F;&#x2F; Correct</span><br><span class="line">      </span><br><span class="line">        this.setState((prevState, props) &#x3D;&gt; (&#123;</span><br><span class="line">        counter: prevState.counter + props.increment</span><br><span class="line">        &#125;));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">     </span><br><span class="line">##### 5. isMounted 在ES6中已经废弃，替代方法为</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">			 	&lt;div id&#x3D;&quot;root&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">				</span><br><span class="line">			 	&lt;script type&#x3D;&quot;text&#x2F;babel&quot;&gt;</span><br><span class="line">				</span><br><span class="line">			 	   const element &#x3D; &lt;h1 className&#x3D;&quot;foo&quot;&gt;Hello, world&lt;&#x2F;h1&gt;;</span><br><span class="line">				</span><br><span class="line">			 	   ReactDOM.render(element, document.getElementById(&#39;root&#39;));</span><br><span class="line">				</span><br><span class="line">			 	&lt;&#x2F;script&gt;</span><br><span class="line">				</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&#96;&#96;&#96; </span><br><span class="line"></span><br><span class="line">      </span><br><span class="line">##### 3. state 与 prop的区别</span><br><span class="line"></span><br><span class="line">setState触发渲染</span><br><span class="line">this.state 更新不会触发渲染，用forceUpdate 强制触发重绘</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">##### 4. state 与 prop触发更新可能是异步</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
+<pre><code>// Wrong
+
+    this.setState({
+        counter: this.state.counter+this.props.increment,
+    });
+
+
+
+// Correct
+
+    this.setState((prevState, props) =&gt; ({
+    counter: prevState.counter + props.increment
+    }));</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">     </span><br><span class="line">##### 5. isMounted 在ES6中已经废弃，替代方法为</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <pre><code>componentDidMount() {
         this.mounted = true;
     }
 componentWillUnmount() {
     this.mounted = false;
-}</code></pre></blockquote>
-<h5 id="6-绑定this的方法"><a href="#6-绑定this的方法" class="headerlink" title="6. 绑定this的方法"></a>6. 绑定this的方法</h5><blockquote>
-<p>一般绑定</p>
-</blockquote>
-<blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount() &#123;</span><br><span class="line">this.serverRequest &#x3D; $.get(this.props.source, function (result) &#123;</span><br><span class="line"> var lastGist &#x3D; result[0];</span><br><span class="line"> this.setState(&#123;</span><br><span class="line">     username: lastGist.owner.login,</span><br><span class="line">     lastGistUrl: lastGist.html_url</span><br><span class="line">    &#125;);</span><br><span class="line"> &#125;.bind(this));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
-<p>外层绑定</p>
-</blockquote>
-<blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    &#x2F;&#x2F;在state设置两个属性，以便后续通过state对象来对其进行修改</span><br><span class="line">    this.state &#x3D; &#123;username: &#39;&#39;, lastGistUrl: &#39;&#39;&#125;;</span><br><span class="line">    &#x2F;&#x2F;绑定挂载事件</span><br><span class="line">    this.componentDidMount &#x3D; this.componentDidMount.bind(this);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
-<p>通过箭头函数绑定    </p>
-</blockquote>
-<blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">        componentDidMount() &#123;</span><br><span class="line">        &#x2F;&#x2F;可以通过箭头函数绑定this</span><br><span class="line">            this.serverRequest &#x3D; $.get(this.props.source, (result)&#x3D;&gt; &#123;</span><br><span class="line">            var lastGist &#x3D; result[0];</span><br><span class="line">            this.setState(&#123;</span><br><span class="line">                username: lastGist.owner.login,</span><br><span class="line">                lastGistUrl: lastGist.html_url</span><br><span class="line">                    &#125;);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">   </span><br><span class="line">##### 7. react生命周期</span><br><span class="line">* Mounting：已插入真实 DOM</span><br><span class="line">* Updating：正在被重新渲染</span><br><span class="line">* Unmounting：已移出真实 DOM</span><br><span class="line"></span><br><span class="line">   ###### 生命周期的方法</span><br><span class="line">* componentWillMount 在渲染前调用,在客户端也在服务端。</span><br><span class="line"></span><br><span class="line">* componentDidMount : 在第一次渲染后调用，只在客户端。之后组件已经生成了对应的DOM结构，可以通过this.getDOMNode()来进行访问。 如果你想和其他JavaScript框架一起使用，可以在这个方法中调用setTimeout, setInterval或者发送AJAX请求等操作(防止异步操作阻塞UI)。</span><br><span class="line"></span><br><span class="line">* componentWillReceiveProps 在组件接收到一个新的 prop (更新后)时被调用。这个方法在初始化render时不会被调用。</span><br><span class="line"></span><br><span class="line">* shouldComponentUpdate 返回一个布尔值。在组件接收到新的props或者state时被调用。在初始化时或者使用forceUpdate时不被调用。</span><br><span class="line">     可以在你确认不需要更新组件时使用。</span><br><span class="line"></span><br><span class="line">* componentWillUpdate在组件接收到新的props或者state但还没有render时被调用。在初始化时不会被调用。</span><br><span class="line"></span><br><span class="line">* componentDidUpdate 在组件完成更新后立即调用。在初始化时不会被调用。</span><br><span class="line"></span><br><span class="line">* componentWillUnmount在组件从 DOM 中移除之前立刻被调用。</span><br><span class="line">   </span><br><span class="line">   注意点： 卸载React组件时，把多余请求关闭，以免影响其他框架或组件的操作</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
+}</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">##### 6. 绑定this的方法</span><br><span class="line"></span><br><span class="line">一般绑定</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>componentDidMount() {
+this.serverRequest = $.get(this.props.source, function (result) {
+ var lastGist = result[0];
+ this.setState({
+     username: lastGist.owner.login,
+     lastGistUrl: lastGist.html_url
+    });
+ }.bind(this));
+}</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">外层绑定</span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>constructor(props) {
+    super(props);
+    //在state设置两个属性，以便后续通过state对象来对其进行修改
+    this.state = {username: &apos;&apos;, lastGistUrl: &apos;&apos;};
+    //绑定挂载事件
+    this.componentDidMount = this.componentDidMount.bind(this);
+}</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">通过箭头函数绑定    </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>componentDidMount() {
+//可以通过箭头函数绑定this
+    this.serverRequest = $.get(this.props.source, (result)=&gt; {
+    var lastGist = result[0];
+    this.setState({
+        username: lastGist.owner.login,
+        lastGistUrl: lastGist.html_url
+            });
+        });
+    }</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"> </span><br><span class="line">   </span><br><span class="line">##### 7. react生命周期</span><br><span class="line">* Mounting：已插入真实 DOM</span><br><span class="line">* Updating：正在被重新渲染</span><br><span class="line">* Unmounting：已移出真实 DOM</span><br><span class="line"></span><br><span class="line">   ###### 生命周期的方法</span><br><span class="line">* componentWillMount 在渲染前调用,在客户端也在服务端。</span><br><span class="line"></span><br><span class="line">* componentDidMount : 在第一次渲染后调用，只在客户端。之后组件已经生成了对应的DOM结构，可以通过this.getDOMNode()来进行访问。 如果你想和其他JavaScript框架一起使用，可以在这个方法中调用setTimeout, setInterval或者发送AJAX请求等操作(防止异步操作阻塞UI)。</span><br><span class="line"></span><br><span class="line">* componentWillReceiveProps 在组件接收到一个新的 prop (更新后)时被调用。这个方法在初始化render时不会被调用。</span><br><span class="line"></span><br><span class="line">* shouldComponentUpdate 返回一个布尔值。在组件接收到新的props或者state时被调用。在初始化时或者使用forceUpdate时不被调用。</span><br><span class="line">     可以在你确认不需要更新组件时使用。</span><br><span class="line"></span><br><span class="line">* componentWillUpdate在组件接收到新的props或者state但还没有render时被调用。在初始化时不会被调用。</span><br><span class="line"></span><br><span class="line">* componentDidUpdate 在组件完成更新后立即调用。在初始化时不会被调用。</span><br><span class="line"></span><br><span class="line">* componentWillUnmount在组件从 DOM 中移除之前立刻被调用。</span><br><span class="line">   </span><br><span class="line">   注意点： 卸载React组件时，把多余请求关闭，以免影响其他框架或组件的操作</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
 <pre><code>componentWillUnmount() {
     this.serverRequest.abort();
-}</code></pre></blockquote>
-<h5 id="8-如何查看-key值"><a href="#8-如何查看-key值" class="headerlink" title="8. 如何查看 key值"></a>8. 如何查看 key值</h5><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">        function ListItem(props) &#123;</span><br><span class="line">        &#x2F;&#x2F; 对啦！这里不需要指定key:</span><br><span class="line">        return &lt;li&gt;&#123;props.value&#125;&lt;&#x2F;li&gt;;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        function NumberList(props) &#123;</span><br><span class="line">            const numbers &#x3D; props.numbers;</span><br><span class="line">            const listItems &#x3D; numbers.map((number) &#x3D;&gt;</span><br><span class="line">            &#x2F;&#x2F; 又对啦！key应该在数组的上下文中被指定</span><br><span class="line">            &lt;ListItem key&#x3D;&#123;number.toString()&#125;</span><br><span class="line">                    value&#x3D;&#123;number&#125; &#x2F;&gt;</span><br><span class="line"> </span><br><span class="line">            );</span><br><span class="line">        return (</span><br><span class="line">                &lt;ul&gt;</span><br><span class="line">                    &#123;listItems&#125;</span><br><span class="line">                &lt;&#x2F;ul&gt;</span><br><span class="line">                );</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        const numbers &#x3D; [1, 2, 3, 4, 5];</span><br><span class="line">        ReactDOM.render(</span><br><span class="line">            &lt;NumberList numbers&#x3D;&#123;numbers&#125; &#x2F;&gt;,</span><br><span class="line">            document.getElementById(&#39;example&#39;)</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">![](http:&#x2F;&#x2F;q37m7xmzp.bkt.clouddn.com&#x2F;mweb&#x2F;pmkz.png)</span><br><span class="line"></span><br><span class="line">key的设置</span><br><span class="line"></span><br><span class="line">错误的设置</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<pre><code>function ListItem(props) {
-    const value = props.value;
-    return (
-        // 错啦！你不需要在这里指定key:
-        &lt;li key={value.toString()}&gt;
-            {value}
-        &lt;/li&gt;
-    );
-}</code></pre></blockquote>
+}</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">      </span><br><span class="line">##### 8. 如何查看 key值</span><br><span class="line">       </span><br><span class="line">&#96;&#96;&#96;   </span><br><span class="line">        function ListItem(props) &#123;</span><br><span class="line">        &#x2F;&#x2F; 对啦！这里不需要指定key:</span><br><span class="line">        return &lt;li&gt;&#123;props.value&#125;&lt;&#x2F;li&gt;;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        function NumberList(props) &#123;</span><br><span class="line">            const numbers &#x3D; props.numbers;</span><br><span class="line">            const listItems &#x3D; numbers.map((number) &#x3D;&gt;</span><br><span class="line">            &#x2F;&#x2F; 又对啦！key应该在数组的上下文中被指定</span><br><span class="line">            &lt;ListItem key&#x3D;&#123;number.toString()&#125;</span><br><span class="line">                    value&#x3D;&#123;number&#125; &#x2F;&gt;</span><br><span class="line"> </span><br><span class="line">            );</span><br><span class="line">        return (</span><br><span class="line">                &lt;ul&gt;</span><br><span class="line">                    &#123;listItems&#125;</span><br><span class="line">                &lt;&#x2F;ul&gt;</span><br><span class="line">                );</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        const numbers &#x3D; [1, 2, 3, 4, 5];</span><br><span class="line">        ReactDOM.render(</span><br><span class="line">            &lt;NumberList numbers&#x3D;&#123;numbers&#125; &#x2F;&gt;,</span><br><span class="line">            document.getElementById(&#39;example&#39;)</span><br><span class="line">        );</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="http://q37m7xmzp.bkt.clouddn.com/mweb/pmkz.png" alt=""></p>
 <blockquote>
-<pre><code>function NumberList(props) {
-    const numbers = props.numbers;
-    const listItems = numbers.map((number) =&gt;
-        //错啦！元素的key应该在这里指定：
-        &lt;ListItem value={number} /&gt;
-    );
-return (
-    &lt;ul&gt;
-        {listItems}
-    &lt;/ul&gt;
-    );
-}</code></pre></blockquote>
+<p>key的设置</p>
+</blockquote>
 <blockquote>
-<pre><code>const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-    &lt;NumberList numbers={numbers} /&gt;,
-    document.getElementById(&apos;example&apos;)
-);</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">       </span><br><span class="line">正确的设置</span><br><span class="line">   </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<pre><code>function ListItem(props) {
-    // 对啦！这里不需要指定key:
-    return &lt;li&gt;{props.value}&lt;/li&gt;;
-}
-
-function NumberList(props) {
-    const numbers = props.numbers;
-    const listItems = numbers.map((number) =&gt;
-    // 又对啦！key应该在数组的上下文中被指定
-    &lt;ListItem key={number.toString()}
-        value={number} /&gt;
-
-    );
-return (
-        &lt;ul&gt;
-            {listItems}
-        &lt;/ul&gt;
-        );
-}
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-    &lt;NumberList numbers={numbers} /&gt;,
-    document.getElementById(&apos;example&apos;)
-    );</code></pre><pre><code></code></pre></blockquote>
+<p>错误的设置</p>
+</blockquote>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">function ListItem(props) &#123;</span><br><span class="line">    const value &#x3D; props.value;</span><br><span class="line">    return (</span><br><span class="line">        &#x2F;&#x2F; 错啦！你不需要在这里指定key:</span><br><span class="line">        &lt;li key&#x3D;&#123;value.toString()&#125;&gt;</span><br><span class="line">            &#123;value&#125;</span><br><span class="line">        &lt;&#x2F;li&gt;</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function NumberList(props) &#123;</span><br><span class="line">    const numbers &#x3D; props.numbers;</span><br><span class="line">    const listItems &#x3D; numbers.map((number) &#x3D;&gt;</span><br><span class="line">        &#x2F;&#x2F;错啦！元素的key应该在这里指定：</span><br><span class="line">        &lt;ListItem value&#x3D;&#123;number&#125; &#x2F;&gt;</span><br><span class="line">    );</span><br><span class="line">return (</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">        &#123;listItems&#125;</span><br><span class="line">    &lt;&#x2F;ul&gt;</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const numbers &#x3D; [1, 2, 3, 4, 5];</span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;NumberList numbers&#x3D;&#123;numbers&#125; &#x2F;&gt;,</span><br><span class="line">    document.getElementById(&#39;example&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>正确的设置</p>
+</blockquote>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">function ListItem(props) &#123;</span><br><span class="line">    &#x2F;&#x2F; 对啦！这里不需要指定key:</span><br><span class="line">    return &lt;li&gt;&#123;props.value&#125;&lt;&#x2F;li&gt;;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">function NumberList(props) &#123;</span><br><span class="line">    const numbers &#x3D; props.numbers;</span><br><span class="line">    const listItems &#x3D; numbers.map((number) &#x3D;&gt;</span><br><span class="line">    &#x2F;&#x2F; 又对啦！key应该在数组的上下文中被指定</span><br><span class="line">    &lt;ListItem key&#x3D;&#123;number.toString()&#125;</span><br><span class="line">        value&#x3D;&#123;number&#125; &#x2F;&gt;</span><br><span class="line"> </span><br><span class="line">    );</span><br><span class="line">return (</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">            &#123;listItems&#125;</span><br><span class="line">        &lt;&#x2F;ul&gt;</span><br><span class="line">        );</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">const numbers &#x3D; [1, 2, 3, 4, 5];</span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;NumberList numbers&#x3D;&#123;numbers&#125; &#x2F;&gt;,</span><br><span class="line">    document.getElementById(&#39;example&#39;)</span><br><span class="line">    );</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+</blockquote>
 <p>总结：在map()方法遍历时设置key</p>
 
       
@@ -446,7 +420,7 @@ ReactDOM.render(
 <h2 id="帮助我们改进-MWeb"><a href="#帮助我们改进-MWeb" class="headerlink" title="帮助我们改进 MWeb"></a>帮助我们改进 MWeb</h2><p>如果你喜欢 MWeb，想让它变得更好，你可以：</p>
 <ol>
 <li>推荐 MWeb，让更多的人知道。</li>
-<li>给我们发反馈和建议：<a href="mailto:&#x63;&#111;&#100;&#x65;&#114;&#x66;&#111;&#x72;&#x61;&#x72;&#116;&#x2b;&#x32;&#51;&#x33;&#51;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#111;&#109;">&#x63;&#111;&#100;&#x65;&#114;&#x66;&#111;&#x72;&#x61;&#x72;&#116;&#x2b;&#x32;&#51;&#x33;&#51;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#111;&#109;</a></li>
+<li>给我们发反馈和建议：<a href="mailto:&#x63;&#111;&#100;&#x65;&#x72;&#102;&#111;&#114;&#x61;&#x72;&#116;&#43;&#50;&#x33;&#x33;&#51;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;">&#x63;&#111;&#100;&#x65;&#x72;&#102;&#111;&#114;&#x61;&#x72;&#116;&#43;&#50;&#x33;&#x33;&#51;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;</a></li>
 <li>在 Mac App Store 上评价 （如果是在 MAS 上购买的话）。</li>
 </ol>
 
