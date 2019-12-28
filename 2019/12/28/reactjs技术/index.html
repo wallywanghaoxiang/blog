@@ -16,7 +16,7 @@
 <meta property="og:description" content="1. react与vue对比https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;b7cd52868e95?from&#x3D;groupmessage 2. react技术mindmap3. react开发工具https:&#x2F;&#x2F;blog.csdn.net&#x2F;crazyhsf&#x2F;article&#x2F;details&#x2F;81039059 4. react注意点https:&#x2F;&#x2F;www.runoob.com&#x2F;react&#x2F;reac">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-28T01:04:49.000Z">
-<meta property="article:modified_time" content="2019-12-28T06:53:27.862Z">
+<meta property="article:modified_time" content="2019-12-28T07:00:13.958Z">
 <meta property="article:author" content="王昊翔">
 <meta name="twitter:card" content="summary">
   
@@ -248,7 +248,7 @@ lastGistUrl: lastGist.html_url</code></pre><p>   });<br> });<br>}</p>
 <p>function NumberList(props) {<br>  const numbers = props.numbers;<br>  const listItems = numbers.map((number) =&gt;<br>    // 又对啦！key应该在数组的上下文中被指定<br>    <ListItem key={number.toString()}
               value={number} /></p>
 <p>  );<br>  return (<br>    <ul><br>      {listItems}<br>    </ul><br>  );<br>}</p>
-<p>const numbers = [1, 2, 3, 4, 5];<br>ReactDOM.render(<br>  <NumberList numbers={numbers} />,<br>  document.getElementById(‘example’)<br>);<br>   ![屏幕快照 2019-12-28 下午2.13.39](<a href="https://wallywanghaoxiang.github.io/mweb/屏幕快照">https://wallywanghaoxiang.github.io/mweb/屏幕快照</a> 2019-12-28 下午2.13.39.png)</p>
+<p>const numbers = [1, 2, 3, 4, 5];<br>ReactDOM.render(<br>  <NumberList numbers={numbers} />,<br>  document.getElementById(‘example’)<br>);<br>![](<a href="http://q37m7xmzp.bkt.clouddn.com/mweb/屏幕快照" target="_blank" rel="noopener">http://q37m7xmzp.bkt.clouddn.com/mweb/屏幕快照</a> 2019-12-28 下午2.13.39.png)</p>
 
       
 
