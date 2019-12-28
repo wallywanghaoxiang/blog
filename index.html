@@ -183,7 +183,8 @@
      </pre>     </li>
 <li><p>用ReactDOM.render 挂载到 节点上</p>
 <p>例子:</p>
-<pre><code>&lt;body&gt;
+<pre><code> &lt;pre&gt;     
+&lt;body&gt;
 
           &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
 
@@ -195,25 +196,68 @@
 
           &lt;/script&gt;
 
-      &lt;/body&gt;</code></pre><p> 3.state 与 prop的区别<br>   setState触发渲染<br>   this.state 更新不会触发渲染，用forceUpdate 强制触发重绘，</p>
-<p> 4.state 与 prop触发更新可能是异步的<br>   // Wrong<br> this.setState({<br>  counter: this.state.counter + this.props.increment,<br> });</p>
-<p> // Correct<br> this.setState((prevState, props) =&gt; ({<br> counter: prevState.counter + props.increment<br> }));</p>
-<p>5.isMounted 在ES6中已经废弃，替代方法为<br> componentDidMount() {</p>
-<pre><code>this.mounted = true;</code></pre><p> }</p>
-<p> componentWillUnmount() {</p>
-<pre><code>this.mounted = false;</code></pre><p> }</p>
-<p>6.绑定this的方法<br> 一般绑定<br> componentDidMount() {<br>   this.serverRequest = $.get(this.props.source, function (result) {<br>   var lastGist = result[0];<br>   this.setState({</p>
-<pre><code>username: lastGist.owner.login,
-lastGistUrl: lastGist.html_url</code></pre><p>   });<br>  }.bind(this));<br>}</p>
-<p>外层绑定<br> constructor(props) {</p>
-<pre><code>super(props);
-//在state设置两个属性，以便后续通过state对象来对其进行修改
-this.state = {username: &apos;&apos;, lastGistUrl: &apos;&apos;};
-//绑定挂载事件
-this.componentDidMount = this.componentDidMount.bind(this);</code></pre><p>  }</p>
-<p> 通过箭头函数绑定<br>  componentDidMount() {<br> //可以通过箭头函数绑定this<br> this.serverRequest = $.get(this.props.source, (result)=&gt; {<br>   var lastGist = result[0];<br>   this.setState({</p>
-<pre><code>username: lastGist.owner.login,
-lastGistUrl: lastGist.html_url</code></pre><p>   });<br> });<br>}</p>
+      &lt;/body&gt;
+&lt;/pre&gt;</code></pre><p> 3.state 与 prop的区别<br>   setState触发渲染<br>   this.state 更新不会触发渲染，用forceUpdate 强制触发重绘，</p>
+<p> 4.state 与 prop触发更新可能是异步的</p>
+  <pre>
+   // Wrong
+ this.setState({
+  counter: this.state.counter + this.props.increment,
+ });
+ </pre>
+
+ <pre>
+ // Correct
+ this.setState((prevState, props) => ({
+ counter: prevState.counter + props.increment
+ }));
+ </pre>
+<p>5.isMounted 在ES6中已经废弃，替代方法为</p>
+<pre>
+ componentDidMount() {
+     this.mounted = true;
+ }
+</pre>
+<pre>
+ componentWillUnmount() {
+     this.mounted = false;
+ }
+</pre>
+<p>6.绑定this的方法<br> 一般绑定</p>
+ <pre>
+ componentDidMount() {
+   this.serverRequest = $.get(this.props.source, function (result) {
+   var lastGist = result[0];
+   this.setState({
+     username: lastGist.owner.login,
+     lastGistUrl: lastGist.html_url
+   });
+  }.bind(this));
+}
+</pre>
+<p>外层绑定</p>
+<pre>
+ constructor(props) {
+     super(props);
+     //在state设置两个属性，以便后续通过state对象来对其进行修改
+     this.state = {username: '', lastGistUrl: ''};
+     //绑定挂载事件
+     this.componentDidMount = this.componentDidMount.bind(this);
+  }
+ </pre>
+<p> 通过箭头函数绑定</p>
+ <pre>
+  componentDidMount() {
+ //可以通过箭头函数绑定this
+ this.serverRequest = $.get(this.props.source, (result)=> {
+   var lastGist = result[0];
+   this.setState({
+     username: lastGist.owner.login,
+     lastGistUrl: lastGist.html_url
+   });
+ });
+}
+ </pre>
 <ol start="7">
 <li><p>react生命周期</p>
 <ul>
@@ -239,9 +283,18 @@ lastGistUrl: lastGist.html_url</code></pre><p>   });<br> });<br>}</p>
 </li>
 </ul>
 <p>注意点： 卸载React组件时，把多余请求关闭，以免影响其他框架或组件的操作</p>
-<p>componentWillUnmount() {<br>  this.serverRequest.abort();<br>}</p>
-</li>
-<li><p>如何查看 key值<br>function ListItem(props) {<br>// 对啦！这里不需要指定key:<br>return <li>{props.value}</li>;<br>}</p>
+<pre>
+componentWillUnmount() {
+  this.serverRequest.abort();
+}
+</pre></li>
+<li><p>如何查看 key值</p>
+<pre>
+function ListItem(props) {
+// 对啦！这里不需要指定key:
+return <li>{props.value}</li>;
+}
+
 </li>
 </ol>
 </li>
@@ -249,17 +302,68 @@ lastGistUrl: lastGist.html_url</code></pre><p>   });<br> });<br>}</p>
 <p>function NumberList(props) {<br>  const numbers = props.numbers;<br>  const listItems = numbers.map((number) =&gt;<br>    // 又对啦！key应该在数组的上下文中被指定<br>    <ListItem key={number.toString()}
               value={number} /></p>
 <p>  );<br>  return (<br>    <ul><br>      {listItems}<br>    </ul><br>  );<br>}</p>
-<p>const numbers = [1, 2, 3, 4, 5];<br>ReactDOM.render(<br>  <NumberList numbers={numbers} />,<br>  document.getElementById(‘example’)<br>);<br><img src="http://q37m7xmzp.bkt.clouddn.com/mweb/pmkz.png" alt=""></p>
+<p>const numbers = [1, 2, 3, 4, 5];<br>ReactDOM.render(<br>  <NumberList numbers={numbers} />,<br>  document.getElementById(‘example’)<br>);</p>
+<p></pre><br><img src="http://q37m7xmzp.bkt.clouddn.com/mweb/pmkz.png" alt=""></p>
 <p>key的设置</p>
-<p>错误的设置<br>function ListItem(props) {<br>  const value = props.value;<br>  return (<br>    // 错啦！你不需要在这里指定key:<br>    <li key={value.toString()}><br>      {value}<br>    </li><br>  );<br>}</p>
-<p>function NumberList(props) {<br>  const numbers = props.numbers;<br>  const listItems = numbers.map((number) =&gt;<br>    //错啦！元素的key应该在这里指定：<br>    <ListItem value={number} /><br>  );<br>  return (<br>    <ul><br>      {listItems}<br>    </ul><br>  );<br>}</p>
-<p>const numbers = [1, 2, 3, 4, 5];<br>ReactDOM.render(<br>  <NumberList numbers={numbers} />,<br>  document.getElementById(‘example’)<br>);</p>
+<p>错误的设置</p>
+<pre>
+function ListItem(props) {
+  const value = props.value;
+  return (
+    // 错啦！你不需要在这里指定key:
+    <li key={value.toString()}>
+      {value}
+    </li>
+  );
+}
+
+function NumberList(props) {
+  const numbers = props.numbers;
+  const listItems = numbers.map((number) =>
+    //错啦！元素的key应该在这里指定：
+    <ListItem value={number} />
+  );
+  return (
+    <ul>
+      {listItems}
+    </ul>
+  );
+}
+
+const numbers = [1, 2, 3, 4, 5];
+ReactDOM.render(
+  <NumberList numbers={numbers} />,
+  document.getElementById('example')
+);
+</pre>
 <p>正确的设置</p>
-<p>function ListItem(props) {<br>  // 对啦！这里不需要指定key:<br>  return <li>{props.value}</li>;<br>}</p>
-<p>function NumberList(props) {<br>  const numbers = props.numbers;<br>  const listItems = numbers.map((number) =&gt;<br>    // 又对啦！key应该在数组的上下文中被指定<br>    <ListItem key={number.toString()}
-              value={number} /></p>
-<p>  );<br>  return (<br>    <ul><br>      {listItems}<br>    </ul><br>  );<br>}</p>
-<p>const numbers = [1, 2, 3, 4, 5];<br>ReactDOM.render(<br>  <NumberList numbers={numbers} />,<br>  document.getElementById(‘example’)<br>);</p>
+<pre>
+function ListItem(props) {
+  // 对啦！这里不需要指定key:
+  return <li>{props.value}</li>;
+}
+
+function NumberList(props) {
+  const numbers = props.numbers;
+  const listItems = numbers.map((number) =>
+    // 又对啦！key应该在数组的上下文中被指定
+    <ListItem key={number.toString()}
+              value={number} />
+
+  );
+  return (
+    <ul>
+      {listItems}
+    </ul>
+  );
+}
+
+const numbers = [1, 2, 3, 4, 5];
+ReactDOM.render(
+  <NumberList numbers={numbers} />,
+  document.getElementById('example')
+);
+</pre>
 <p>总结：在map()方法遍历时设置key</p>
 
       
@@ -431,7 +535,7 @@ lastGistUrl: lastGist.html_url</code></pre><p>   });<br> });<br>}</p>
 <h2 id="帮助我们改进-MWeb"><a href="#帮助我们改进-MWeb" class="headerlink" title="帮助我们改进 MWeb"></a>帮助我们改进 MWeb</h2><p>如果你喜欢 MWeb，想让它变得更好，你可以：</p>
 <ol>
 <li>推荐 MWeb，让更多的人知道。</li>
-<li>给我们发反馈和建议：<a href="mailto:&#x63;&#x6f;&#x64;&#101;&#x72;&#x66;&#111;&#x72;&#97;&#114;&#116;&#43;&#x32;&#x33;&#51;&#51;&#64;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#x6d;">&#x63;&#x6f;&#x64;&#101;&#x72;&#x66;&#111;&#x72;&#97;&#114;&#116;&#43;&#x32;&#x33;&#51;&#51;&#64;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#x6d;</a></li>
+<li>给我们发反馈和建议：<a href="mailto:&#x63;&#x6f;&#100;&#101;&#x72;&#102;&#111;&#x72;&#x61;&#x72;&#116;&#43;&#50;&#51;&#x33;&#x33;&#64;&#x67;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#x63;&#x6f;&#100;&#101;&#x72;&#102;&#111;&#x72;&#x61;&#x72;&#116;&#43;&#50;&#51;&#x33;&#x33;&#64;&#x67;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;</a></li>
 <li>在 Mac App Store 上评价 （如果是在 MAS 上购买的话）。</li>
 </ol>
 
