@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://wallywanghaoxiang.github.io/blog">
-  <title>Archives | 新石器时代</title>
+  <title>typescript技术 | 新石器时代</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="新石器时代">
-<meta property="og:url" content="https:&#x2F;&#x2F;wallywanghaoxiang.github.io&#x2F;blog&#x2F;archives&#x2F;index.html">
+  <meta name="description" content="typescript 网址：https:&#x2F;&#x2F;ts.xcatliu.com&#x2F; TypeScript 的缺点 任何事物都是有两面性的，我认为 TypeScript 的弊端在于：有一定的学习成本，需要理解接口（Interfaces）、泛型（Generics）、类（Classes）、枚举类型（Enums）等前端工程师可能不是很熟悉的概念短期可能会增加一些开发成本，毕竟要多写一些类型的定义，不过对于一个需要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="typescript技术">
+<meta property="og:url" content="https:&#x2F;&#x2F;wallywanghaoxiang.github.io&#x2F;blog&#x2F;2019&#x2F;12&#x2F;29&#x2F;typescript%E6%8A%80%E6%9C%AF&#x2F;index.html">
 <meta property="og:site_name" content="新石器时代">
+<meta property="og:description" content="typescript 网址：https:&#x2F;&#x2F;ts.xcatliu.com&#x2F; TypeScript 的缺点 任何事物都是有两面性的，我认为 TypeScript 的弊端在于：有一定的学习成本，需要理解接口（Interfaces）、泛型（Generics）、类（Classes）、枚举类型（Enums）等前端工程师可能不是很熟悉的概念短期可能会增加一些开发成本，毕竟要多写一些类型的定义，不过对于一个需要">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-29T05:56:37.000Z">
+<meta property="article:modified_time" content="2019-12-29T09:49:54.861Z">
 <meta property="article:author" content="王昊翔">
 <meta name="twitter:card" content="summary">
   
@@ -150,238 +154,235 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-typescript技术" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      typescript技术
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2019/12/29/typescript%E6%8A%80%E6%9C%AF/" class="archive-article-date">
+
+        
+        <a href="/blog/2019/12/29/typescript%E6%8A%80%E6%9C%AF/" class="archive-article-date">
   	<time datetime="2019-12-29T05:56:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-29</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2019/12/29/typescript%E6%8A%80%E6%9C%AF/">typescript技术</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="typescript-网址：https-ts-xcatliu-com"><a href="#typescript-网址：https-ts-xcatliu-com" class="headerlink" title="typescript 网址：https://ts.xcatliu.com/"></a>typescript 网址：<a href="https://ts.xcatliu.com/" target="_blank" rel="noopener">https://ts.xcatliu.com/</a></h4><blockquote>
+<h5 id="TypeScript-的缺点"><a href="#TypeScript-的缺点" class="headerlink" title="TypeScript 的缺点"></a>TypeScript 的缺点</h5><blockquote>
+<p>任何事物都是有两面性的，我认为 TypeScript 的弊端在于：<br>有一定的学习成本，需要理解接口（Interfaces）、泛型（Generics）、类（Classes）、枚举类型（Enums）等前端工程师可能不是很熟悉的概念<br>短期可能会增加一些开发成本，毕竟要多写一些类型的定义，不过对于一个需要长期维护的项目，TypeScript 能够减少其维护成本<br>集成到构建流程需要一些工作量<br>可能和一些库结合的不是很完美</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<h5 id="TypeScript-与-javaScript的区别"><a href="#TypeScript-与-javaScript的区别" class="headerlink" title="TypeScript 与 javaScript的区别"></a>TypeScript 与 javaScript的区别</h5><p>TypeScript会进行类型强制检查，需要类型声明文件 xxx.d.ts<br>npm包声明文件的所在</p>
+<blockquote>
+<p>一般我们通过 import foo from ‘foo’ 导入一个 npm 包，这是符合 ES6 模块规范的。<br>在我们尝试给一个 npm 包创建声明文件之前，需要先看看它的声明文件是否已经存在。一般来说，npm 包的声明文件可能存在于两个地方：<br>与该 npm 包绑定在一起。判断依据是 package.json 中有 types 字段，或者有一个 index.d.ts 声明文件。这种模式不需要额外安装其他包，是最为推荐的，所以以后我们自己创建 npm 包的时候，最好也将声明文件与 npm 包绑定在一起。<br>发布到 @types 里。我们只需要尝试安装一下对应的 @types 包就知道是否存在该声明文件，安装命令是 npm install @types/foo –save-dev。这种模式一般是由于 npm 包的维护者没有提供声明文件，所以只能由其他人将声明文件发布到 @types 里了。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>假如以上两种方式都没有找到对应的声明文件，那么我们就需要自己为它写声明文件了。由于是通过 import 语句导入的模块，所以声明文件存放的位置也有所约束，一般有两种方案：</p>
+<blockquote>
+<p>创建一个 node_modules/@types/foo/index.d.ts 文件，存放 foo 模块的声明文件。这种方式不需要额外的配置，但是 node_modules 目录不稳定，代码也没有被保存到仓库中，无法回溯版本，有不小心被删除的风险，故不太建议用这种方案，一般只用作临时测试。<br>创建一个 types 目录，专门用来管理自己写的声明文件，将 foo 的声明文件放到 types/foo/index.d.ts 中。这种方式需要配置下 tsconfig.json 中的 paths 和 baseUrl 字段。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;path&#x2F;to&#x2F;project</span><br><span class="line">├── src</span><br><span class="line">|  └── index.ts</span><br><span class="line">├── types</span><br><span class="line">|  └── foo</span><br><span class="line">|     └── index.d.ts</span><br><span class="line">└── tsconfig.json</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>tsconfig.json 内容：</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"compilerOptions"</span>: &#123;</span><br><span class="line">        <span class="string">"module"</span>: <span class="string">"commonjs"</span>,</span><br><span class="line">        <span class="string">"baseUrl"</span>: <span class="string">"./"</span>,</span><br><span class="line">        <span class="string">"paths"</span>: &#123;</span><br><span class="line">            <span class="string">"*"</span>: [<span class="string">"types/*"</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>如此配置之后，通过 import 导入 foo 的时候，也会去 types 目录下寻找对应的模块的声明文件了。<br>注意 module 配置可以有很多种选项，不同的选项会影响模块的导入导出模式。这里我们使用了 commonjs 这个最常用的选项，后面的教程也都默认使用的这个选项。<br>不管采用了以上两种方式中的哪一种，我都强烈建议大家将书写好的声明文件（通过给第三方库发 pull request，或者直接提交到 @types 里）发布到开源社区中，享受了这么多社区的优秀的资源，就应该在力所能及的时候给出一些回馈。只有所有人都参与进来，才能让 ts 社区更加繁荣。</p>
+<h5 id="npm-包的声明文件主要有以下几种语法："><a href="#npm-包的声明文件主要有以下几种语法：" class="headerlink" title="npm 包的声明文件主要有以下几种语法："></a>npm 包的声明文件主要有以下几种语法：</h5><ul>
+<li>export 导出变量</li>
+<li>export namespace 导出（含有子属性的）对象</li>
+<li>export default ES6 默认导出</li>
+<li>export = commonjs 导出模块</li>
+</ul>
+<p>npm 包的声明文件与全局变量的声明文件有很大区别。在 npm 包的声明文件中，使用 declare 不再会声明一个全局变量，而只会在当前文件中声明一个局部变量。只有在声明文件中使用 export 导出，然后在使用方 import 导入后，才会应用到这些类型声明。</p>
+<h5 id="export-的语法与普通的-ts-中的语法类似，区别仅在于声明文件中禁止定义具体的实现"><a href="#export-的语法与普通的-ts-中的语法类似，区别仅在于声明文件中禁止定义具体的实现" class="headerlink" title="export 的语法与普通的 ts 中的语法类似，区别仅在于声明文件中禁止定义具体的实现"></a>export 的语法与普通的 ts 中的语法类似，区别仅在于声明文件中禁止定义具体的实现</h5><blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// types/foo/index.d.ts</span></span><br><span class="line"></span><br><span class="line">declare <span class="keyword">const</span> name: string;</span><br><span class="line">declare <span class="function"><span class="keyword">function</span> <span class="title">getName</span>(<span class="params"></span>): <span class="title">string</span>;</span></span><br><span class="line"><span class="function"><span class="title">declare</span> <span class="title">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name: string);</span><br><span class="line">    sayHi(): string;</span><br><span class="line">&#125;</span><br><span class="line">declare enum Directions &#123;</span><br><span class="line">    Up,</span><br><span class="line">    Down,</span><br><span class="line">    Left,</span><br><span class="line">    Right</span><br><span class="line">&#125;</span><br><span class="line">interface Options &#123;</span><br><span class="line">    data: any;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; name, getName, Animal, Directions, Options &#125;;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>对应的导入和使用模块应该是这样：</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/index.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; name, getName, Animal, Directions, Options &#125; <span class="keyword">from</span> <span class="string">'foo'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(name);</span><br><span class="line"><span class="keyword">let</span> myName = getName();</span><br><span class="line"><span class="keyword">let</span> cat = <span class="keyword">new</span> Animal(<span class="string">'Tom'</span>);</span><br><span class="line"><span class="keyword">let</span> directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];</span><br><span class="line"><span class="keyword">let</span> options: Options = &#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">        name: <span class="string">'foo'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>export namespace</p>
+<p>与 declare namespace 类似，export namespace 用来导出一个拥有子属性的对象</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// types/foo/index.d.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> namespace foo &#123;</span><br><span class="line">    <span class="keyword">const</span> name: string;</span><br><span class="line">    namespace bar &#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params"></span>): <span class="title">string</span>;</span></span><br><span class="line"><span class="function">    &#125;</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;<span class="comment">// src/index.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; foo &#125; <span class="keyword">from</span> <span class="string">'foo'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(foo.name);</span><br><span class="line">foo.bar.baz();</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+</blockquote>
+<p>export default</p>
+<p>在 ES6 模块系统中，使用 export default 可以导出一个默认值，使用方可以用 import foo from ‘foo’ 而不是 import { foo } from ‘foo’ 来导入这个默认值。<br>在类型声明文件中，export default 用来导出默认值的类型：</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// types/foo/index.d.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>): <span class="title">string</span>;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/index.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> foo <span class="keyword">from</span> <span class="string">'foo'</span>;</span><br><span class="line"></span><br><span class="line">foo();</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>注意，只有 function、class 和 interface 可以直接默认导出，其他的变量需要先定义出来，再默认导出</p>
+<p>enum的导出</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// types/foo/index.d.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Directions;</span><br><span class="line"></span><br><span class="line">declare enum Directions &#123;</span><br><span class="line">   Up,</span><br><span class="line">   Down,</span><br><span class="line">   Left,</span><br><span class="line">   Right</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="UMD-库"><a href="#UMD-库" class="headerlink" title="UMD 库"></a>UMD 库</h5><p>既可以通过 <code>&lt;script&gt;</code>标签引入，又可以通过 import 导入的库，称为 UMD 库。相比于 npm 包的类型声明文件，我们需要额外声明一个全局变量，为了实现这种方式，ts 提供了一个新语法 export as namespace。</p>
+<p>export as namespace</p>
+<p>一般使用 export as namespace 时，都是先有了 npm 包的声明文件，再基于它添加一条 export as namespace 语句，即可将声明好的一个变量声明为全局变量，举例如下</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// types/foo/index.d.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">as</span> namespace foo;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> foo;</span><br><span class="line"></span><br><span class="line">declare <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>): <span class="title">string</span>;</span></span><br><span class="line"><span class="function"><span class="title">declare</span> <span class="title">namespace</span> <span class="title">foo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> bar: number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+</blockquote>
+<h5 id="自动生成声明文件"><a href="#自动生成声明文件" class="headerlink" title="自动生成声明文件"></a>自动生成声明文件</h5><p>如果库的源码本身就是由 ts 写的，那么在使用 tsc 脚本将 ts 编译为 js 的时候，添加 declaration 选项，就可以同时也生成 .d.ts 声明文件了。<br>我们可以在命令行中添加 –declaration（简写 -d），或者在 tsconfig.json 中添加 declaration 选项。这里以 tsconfig.json 为例：</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">      <span class="string">"compilerOptions"</span>: &#123;</span><br><span class="line">      <span class="string">"module"</span>: <span class="string">"commonjs"</span>,</span><br><span class="line">      <span class="string">"outDir"</span>: <span class="string">"lib"</span>,</span><br><span class="line">      <span class="string">"declaration"</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上例中我们添加了 outDir 选项，将 ts 文件的编译结果输出到 lib 目录下，然后添加了 declaration 选项，设置为 true，表示将会由 ts 文件自动生成 .d.ts 声明文件，也会输出到 lib 目录下。</p>
+</blockquote>
+<p>运行 tsc 之后，目录结构如下</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;path&#x2F;to&#x2F;project</span><br><span class="line">├── lib</span><br><span class="line">|  ├── bar</span><br><span class="line">|  |  ├── index.d.ts</span><br><span class="line">|  |  └── index.js</span><br><span class="line">|  ├── index.d.ts</span><br><span class="line">|  └── index.js</span><br><span class="line">├── src</span><br><span class="line">|  ├── bar</span><br><span class="line">|  |  └── index.ts</span><br><span class="line">|  └── index.ts</span><br><span class="line">├── package.json</span><br><span class="line">└── tsconfig.json</span><br></pre></td></tr></table></figure>
+
+</blockquote>
+<p>在这个例子中，src 目录下有两个 ts 文件，分别是 src/index.ts 和 src/bar/index.ts，它们被编译到 lib 目录下的同时，也会生成对应的两个声明文件 lib/index.d.ts 和 lib/bar/index.d.ts。它们的内容分别是：</p>
+<h5 id="发布声明文件"><a href="#发布声明文件" class="headerlink" title="发布声明文件"></a>发布声明文件</h5><p><a href="https://ts.xcatliu.com/basics/declaration-files#fa-bu-sheng-ming-wen-jian" target="_blank" rel="noopener">https://ts.xcatliu.com/basics/declaration-files#fa-bu-sheng-ming-wen-jian</a></p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://wallywanghaoxiang.github.io/blog/2019/12/29/typescript%E6%8A%80%E6%9C%AF/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2019/12/28/react%E8%B5%84%E6%BA%90/" class="archive-article-date">
-  	<time datetime="2019-12-28T12:31:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-28</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2019/12/28/react%E8%B5%84%E6%BA%90/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">react资源</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2019/12/28/react%E8%B5%84%E6%BA%90/">react资源</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2019/12/28/reactjs%E6%8A%80%E6%9C%AF/" class="archive-article-date">
-  	<time datetime="2019-12-28T01:04:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2019/12/28/reactjs%E6%8A%80%E6%9C%AF/">reactjs技术</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2019/12/27/%E5%B0%8F%E4%B8%96%E7%95%8C%E7%BD%91%E7%BB%9C/" class="archive-article-date">
-  	<time datetime="2019-12-27T12:15:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2019/12/27/%E5%B0%8F%E4%B8%96%E7%95%8C%E7%BD%91%E7%BB%9C/">小世界网络</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2019/12/27/docs/15774058653660/" class="archive-article-date">
-  	<time datetime="2019-12-27T00:17:45.370Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2019/12/27/docs/15774058653660/">docs/15774058653660</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2019/12/27/%E8%BF%9C%E8%BF%91%E4%BA%B2%E7%96%8F%E4%B8%8E%E7%94%9F%E6%80%81%E5%B4%A9%E6%BA%83/" class="archive-article-date">
-  	<time datetime="2019-12-27T00:16:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2019/12/27/%E8%BF%9C%E8%BF%91%E4%BA%B2%E7%96%8F%E4%B8%8E%E7%94%9F%E6%80%81%E5%B4%A9%E6%BA%83/">远近亲疏与生态崩溃</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2019/12/18/%E7%8E%8B%E6%98%8A%E7%BF%94%E7%9A%84%E6%8A%80%E6%9C%AF%E6%A0%88/" class="archive-article-date">
-  	<time datetime="2019-12-18T08:05:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2019/12/18/%E7%8E%8B%E6%98%8A%E7%BF%94%E7%9A%84%E6%8A%80%E6%9C%AF%E6%A0%88/">王昊翔的技术栈</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2019/12/18/hello-world/" class="archive-article-date">
-  	<time datetime="2019-12-18T05:06:58.485Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2019/12/18/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -404,8 +405,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -152,6 +152,148 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-typescript技术" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2019/12/29/typescript%E6%8A%80%E6%9C%AF/">typescript技术</a>
+    </h1>
+  
+
+        
+        <a href="/blog/2019/12/29/typescript%E6%8A%80%E6%9C%AF/" class="archive-article-date">
+  	<time datetime="2019-12-29T05:56:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="typescript-网址：https-ts-xcatliu-com"><a href="#typescript-网址：https-ts-xcatliu-com" class="headerlink" title="typescript 网址：https://ts.xcatliu.com/"></a>typescript 网址：<a href="https://ts.xcatliu.com/" target="_blank" rel="noopener">https://ts.xcatliu.com/</a></h4><blockquote>
+<h5 id="TypeScript-的缺点"><a href="#TypeScript-的缺点" class="headerlink" title="TypeScript 的缺点"></a>TypeScript 的缺点</h5><blockquote>
+<p>任何事物都是有两面性的，我认为 TypeScript 的弊端在于：<br>有一定的学习成本，需要理解接口（Interfaces）、泛型（Generics）、类（Classes）、枚举类型（Enums）等前端工程师可能不是很熟悉的概念<br>短期可能会增加一些开发成本，毕竟要多写一些类型的定义，不过对于一个需要长期维护的项目，TypeScript 能够减少其维护成本<br>集成到构建流程需要一些工作量<br>可能和一些库结合的不是很完美</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<h5 id="TypeScript-与-javaScript的区别"><a href="#TypeScript-与-javaScript的区别" class="headerlink" title="TypeScript 与 javaScript的区别"></a>TypeScript 与 javaScript的区别</h5><p>TypeScript会进行类型强制检查，需要类型声明文件 xxx.d.ts<br>npm包声明文件的所在</p>
+<blockquote>
+<p>一般我们通过 import foo from ‘foo’ 导入一个 npm 包，这是符合 ES6 模块规范的。<br>在我们尝试给一个 npm 包创建声明文件之前，需要先看看它的声明文件是否已经存在。一般来说，npm 包的声明文件可能存在于两个地方：<br>与该 npm 包绑定在一起。判断依据是 package.json 中有 types 字段，或者有一个 index.d.ts 声明文件。这种模式不需要额外安装其他包，是最为推荐的，所以以后我们自己创建 npm 包的时候，最好也将声明文件与 npm 包绑定在一起。<br>发布到 @types 里。我们只需要尝试安装一下对应的 @types 包就知道是否存在该声明文件，安装命令是 npm install @types/foo –save-dev。这种模式一般是由于 npm 包的维护者没有提供声明文件，所以只能由其他人将声明文件发布到 @types 里了。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>假如以上两种方式都没有找到对应的声明文件，那么我们就需要自己为它写声明文件了。由于是通过 import 语句导入的模块，所以声明文件存放的位置也有所约束，一般有两种方案：</p>
+<blockquote>
+<p>创建一个 node_modules/@types/foo/index.d.ts 文件，存放 foo 模块的声明文件。这种方式不需要额外的配置，但是 node_modules 目录不稳定，代码也没有被保存到仓库中，无法回溯版本，有不小心被删除的风险，故不太建议用这种方案，一般只用作临时测试。<br>创建一个 types 目录，专门用来管理自己写的声明文件，将 foo 的声明文件放到 types/foo/index.d.ts 中。这种方式需要配置下 tsconfig.json 中的 paths 和 baseUrl 字段。</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;path&#x2F;to&#x2F;project</span><br><span class="line">├── src</span><br><span class="line">|  └── index.ts</span><br><span class="line">├── types</span><br><span class="line">|  └── foo</span><br><span class="line">|     └── index.d.ts</span><br><span class="line">└── tsconfig.json</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>tsconfig.json 内容：</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"compilerOptions"</span>: &#123;</span><br><span class="line">        <span class="string">"module"</span>: <span class="string">"commonjs"</span>,</span><br><span class="line">        <span class="string">"baseUrl"</span>: <span class="string">"./"</span>,</span><br><span class="line">        <span class="string">"paths"</span>: &#123;</span><br><span class="line">            <span class="string">"*"</span>: [<span class="string">"types/*"</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>如此配置之后，通过 import 导入 foo 的时候，也会去 types 目录下寻找对应的模块的声明文件了。<br>注意 module 配置可以有很多种选项，不同的选项会影响模块的导入导出模式。这里我们使用了 commonjs 这个最常用的选项，后面的教程也都默认使用的这个选项。<br>不管采用了以上两种方式中的哪一种，我都强烈建议大家将书写好的声明文件（通过给第三方库发 pull request，或者直接提交到 @types 里）发布到开源社区中，享受了这么多社区的优秀的资源，就应该在力所能及的时候给出一些回馈。只有所有人都参与进来，才能让 ts 社区更加繁荣。</p>
+<h5 id="npm-包的声明文件主要有以下几种语法："><a href="#npm-包的声明文件主要有以下几种语法：" class="headerlink" title="npm 包的声明文件主要有以下几种语法："></a>npm 包的声明文件主要有以下几种语法：</h5><ul>
+<li>export 导出变量</li>
+<li>export namespace 导出（含有子属性的）对象</li>
+<li>export default ES6 默认导出</li>
+<li>export = commonjs 导出模块</li>
+</ul>
+<p>npm 包的声明文件与全局变量的声明文件有很大区别。在 npm 包的声明文件中，使用 declare 不再会声明一个全局变量，而只会在当前文件中声明一个局部变量。只有在声明文件中使用 export 导出，然后在使用方 import 导入后，才会应用到这些类型声明。</p>
+<h5 id="export-的语法与普通的-ts-中的语法类似，区别仅在于声明文件中禁止定义具体的实现"><a href="#export-的语法与普通的-ts-中的语法类似，区别仅在于声明文件中禁止定义具体的实现" class="headerlink" title="export 的语法与普通的 ts 中的语法类似，区别仅在于声明文件中禁止定义具体的实现"></a>export 的语法与普通的 ts 中的语法类似，区别仅在于声明文件中禁止定义具体的实现</h5><blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// types/foo/index.d.ts</span></span><br><span class="line"></span><br><span class="line">declare <span class="keyword">const</span> name: string;</span><br><span class="line">declare <span class="function"><span class="keyword">function</span> <span class="title">getName</span>(<span class="params"></span>): <span class="title">string</span>;</span></span><br><span class="line"><span class="function"><span class="title">declare</span> <span class="title">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name: string);</span><br><span class="line">    sayHi(): string;</span><br><span class="line">&#125;</span><br><span class="line">declare enum Directions &#123;</span><br><span class="line">    Up,</span><br><span class="line">    Down,</span><br><span class="line">    Left,</span><br><span class="line">    Right</span><br><span class="line">&#125;</span><br><span class="line">interface Options &#123;</span><br><span class="line">    data: any;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; name, getName, Animal, Directions, Options &#125;;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>对应的导入和使用模块应该是这样：</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/index.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; name, getName, Animal, Directions, Options &#125; <span class="keyword">from</span> <span class="string">'foo'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(name);</span><br><span class="line"><span class="keyword">let</span> myName = getName();</span><br><span class="line"><span class="keyword">let</span> cat = <span class="keyword">new</span> Animal(<span class="string">'Tom'</span>);</span><br><span class="line"><span class="keyword">let</span> directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];</span><br><span class="line"><span class="keyword">let</span> options: Options = &#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">        name: <span class="string">'foo'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>export namespace</p>
+<p>与 declare namespace 类似，export namespace 用来导出一个拥有子属性的对象</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// types/foo/index.d.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> namespace foo &#123;</span><br><span class="line">    <span class="keyword">const</span> name: string;</span><br><span class="line">    namespace bar &#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">baz</span>(<span class="params"></span>): <span class="title">string</span>;</span></span><br><span class="line"><span class="function">    &#125;</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;<span class="comment">// src/index.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; foo &#125; <span class="keyword">from</span> <span class="string">'foo'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(foo.name);</span><br><span class="line">foo.bar.baz();</span><br></pre></td></tr></table></figure>
+
+</blockquote>
+<p>export default</p>
+<p>在 ES6 模块系统中，使用 export default 可以导出一个默认值，使用方可以用 import foo from ‘foo’ 而不是 import { foo } from ‘foo’ 来导入这个默认值。<br>在类型声明文件中，export default 用来导出默认值的类型：</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// types/foo/index.d.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>): <span class="title">string</span>;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/index.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> foo <span class="keyword">from</span> <span class="string">'foo'</span>;</span><br><span class="line"></span><br><span class="line">foo();</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>注意，只有 function、class 和 interface 可以直接默认导出，其他的变量需要先定义出来，再默认导出</p>
+<p>enum的导出</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// types/foo/index.d.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Directions;</span><br><span class="line"></span><br><span class="line">declare enum Directions &#123;</span><br><span class="line">   Up,</span><br><span class="line">   Down,</span><br><span class="line">   Left,</span><br><span class="line">   Right</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="UMD-库"><a href="#UMD-库" class="headerlink" title="UMD 库"></a>UMD 库</h5><p>既可以通过 <code>&lt;script&gt;</code>标签引入，又可以通过 import 导入的库，称为 UMD 库。相比于 npm 包的类型声明文件，我们需要额外声明一个全局变量，为了实现这种方式，ts 提供了一个新语法 export as namespace。</p>
+<p>export as namespace</p>
+<p>一般使用 export as namespace 时，都是先有了 npm 包的声明文件，再基于它添加一条 export as namespace 语句，即可将声明好的一个变量声明为全局变量，举例如下</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// types/foo/index.d.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">as</span> namespace foo;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> foo;</span><br><span class="line"></span><br><span class="line">declare <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>): <span class="title">string</span>;</span></span><br><span class="line"><span class="function"><span class="title">declare</span> <span class="title">namespace</span> <span class="title">foo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> bar: number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</blockquote>
+<h5 id="自动生成声明文件"><a href="#自动生成声明文件" class="headerlink" title="自动生成声明文件"></a>自动生成声明文件</h5><p>如果库的源码本身就是由 ts 写的，那么在使用 tsc 脚本将 ts 编译为 js 的时候，添加 declaration 选项，就可以同时也生成 .d.ts 声明文件了。<br>我们可以在命令行中添加 –declaration（简写 -d），或者在 tsconfig.json 中添加 declaration 选项。这里以 tsconfig.json 为例：</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">      <span class="string">"compilerOptions"</span>: &#123;</span><br><span class="line">      <span class="string">"module"</span>: <span class="string">"commonjs"</span>,</span><br><span class="line">      <span class="string">"outDir"</span>: <span class="string">"lib"</span>,</span><br><span class="line">      <span class="string">"declaration"</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上例中我们添加了 outDir 选项，将 ts 文件的编译结果输出到 lib 目录下，然后添加了 declaration 选项，设置为 true，表示将会由 ts 文件自动生成 .d.ts 声明文件，也会输出到 lib 目录下。</p>
+</blockquote>
+<p>运行 tsc 之后，目录结构如下</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;path&#x2F;to&#x2F;project</span><br><span class="line">├── lib</span><br><span class="line">|  ├── bar</span><br><span class="line">|  |  ├── index.d.ts</span><br><span class="line">|  |  └── index.js</span><br><span class="line">|  ├── index.d.ts</span><br><span class="line">|  └── index.js</span><br><span class="line">├── src</span><br><span class="line">|  ├── bar</span><br><span class="line">|  |  └── index.ts</span><br><span class="line">|  └── index.ts</span><br><span class="line">├── package.json</span><br><span class="line">└── tsconfig.json</span><br></pre></td></tr></table></figure>
+
+</blockquote>
+<p>在这个例子中，src 目录下有两个 ts 文件，分别是 src/index.ts 和 src/bar/index.ts，它们被编译到 lib 目录下的同时，也会生成对应的两个声明文件 lib/index.d.ts 和 lib/bar/index.d.ts。它们的内容分别是：</p>
+<h5 id="发布声明文件"><a href="#发布声明文件" class="headerlink" title="发布声明文件"></a>发布声明文件</h5><p><a href="https://ts.xcatliu.com/basics/declaration-files#fa-bu-sheng-ming-wen-jian" target="_blank" rel="noopener">https://ts.xcatliu.com/basics/declaration-files#fa-bu-sheng-ming-wen-jian</a></p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2019/12/29/typescript%E6%8A%80%E6%9C%AF/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-react资源" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -520,7 +662,7 @@
 <h2 id="帮助我们改进-MWeb"><a href="#帮助我们改进-MWeb" class="headerlink" title="帮助我们改进 MWeb"></a>帮助我们改进 MWeb</h2><p>如果你喜欢 MWeb，想让它变得更好，你可以：</p>
 <ol>
 <li>推荐 MWeb，让更多的人知道。</li>
-<li>给我们发反馈和建议：<a href="mailto:&#x63;&#x6f;&#x64;&#x65;&#x72;&#102;&#x6f;&#x72;&#x61;&#114;&#x74;&#x2b;&#x32;&#x33;&#51;&#x33;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#109;">&#x63;&#x6f;&#x64;&#x65;&#x72;&#102;&#x6f;&#x72;&#x61;&#114;&#x74;&#x2b;&#x32;&#x33;&#51;&#x33;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#109;</a></li>
+<li>给我们发反馈和建议：<a href="mailto:&#x63;&#x6f;&#x64;&#x65;&#114;&#x66;&#111;&#x72;&#x61;&#x72;&#x74;&#x2b;&#50;&#x33;&#51;&#51;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#109;">&#x63;&#x6f;&#x64;&#x65;&#114;&#x66;&#111;&#x72;&#x61;&#x72;&#x74;&#x2b;&#50;&#x33;&#51;&#51;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#x6f;&#109;</a></li>
 <li>在 Mac App Store 上评价 （如果是在 MAS 上购买的话）。</li>
 </ol>
 
