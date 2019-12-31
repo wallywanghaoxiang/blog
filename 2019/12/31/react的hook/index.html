@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://wallywanghaoxiang.github.io/blog">
-  <title>docs/15774058653660 | 新石器时代</title>
+  <title>react的hook | 新石器时代</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="欢迎使用 MWebMWeb 是专业的 Markdown 写作、记笔记、静态博客生成软件，目前已支持 Mac，iPad 和 iPhone。MWeb 有以下特色： 软件本身： 使用原生的 macOS 技术打造，追求与系统的完美结合。 原则上，首先是追求界面简洁和高性能，然后才是强大易用，功能全面。  Markdown 语法： 使用 GitHub Flavored Markdown 语法，简称 GFM">
+  <meta name="description" content="问题由来React App 由多个类按照层级，一层层构成，复杂度成倍增长。再加入 Redux，就变得更复杂。 组件类的几个缺点：  大型组件很难拆分和重构，也很难测试。 业务逻辑分散在组件的各个方法之中，导致重复逻辑或关联逻辑。 组件类引入了复杂的编程模式，比如 render props 和高阶组件。  解决方案React 团队希望，组件不要变成复杂的容器，最好只是数据流的管道。开发者根据需要，组">
 <meta property="og:type" content="article">
-<meta property="og:title" content="docs&#x2F;15774058653660">
-<meta property="og:url" content="https:&#x2F;&#x2F;wallywanghaoxiang.github.io&#x2F;blog&#x2F;2019&#x2F;12&#x2F;27&#x2F;docs&#x2F;15774058653660&#x2F;index.html">
+<meta property="og:title" content="react的hook">
+<meta property="og:url" content="https:&#x2F;&#x2F;wallywanghaoxiang.github.io&#x2F;blog&#x2F;2019&#x2F;12&#x2F;31&#x2F;react%E7%9A%84hook&#x2F;index.html">
 <meta property="og:site_name" content="新石器时代">
-<meta property="og:description" content="欢迎使用 MWebMWeb 是专业的 Markdown 写作、记笔记、静态博客生成软件，目前已支持 Mac，iPad 和 iPhone。MWeb 有以下特色： 软件本身： 使用原生的 macOS 技术打造，追求与系统的完美结合。 原则上，首先是追求界面简洁和高性能，然后才是强大易用，功能全面。  Markdown 语法： 使用 GitHub Flavored Markdown 语法，简称 GFM">
+<meta property="og:description" content="问题由来React App 由多个类按照层级，一层层构成，复杂度成倍增长。再加入 Redux，就变得更复杂。 组件类的几个缺点：  大型组件很难拆分和重构，也很难测试。 业务逻辑分散在组件的各个方法之中，导致重复逻辑或关联逻辑。 组件类引入了复杂的编程模式，比如 render props 和高阶组件。  解决方案React 团队希望，组件不要变成复杂的容器，最好只是数据流的管道。开发者根据需要，组">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-12-27T00:17:45.370Z">
-<meta property="article:modified_time" content="2019-12-27T00:17:45.370Z">
+<meta property="article:published_time" content="2019-12-31T07:03:21.000Z">
+<meta property="article:modified_time" content="2019-12-31T08:49:21.310Z">
 <meta property="article:author" content="王昊翔">
 <meta name="twitter:card" content="summary">
   
@@ -154,61 +154,123 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-docs/15774058653660" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-react的hook" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      docs/15774058653660
+      react的hook
     </h1>
   
 
         
-        <a href="/blog/2019/12/27/docs/15774058653660/" class="archive-article-date">
-  	<time datetime="2019-12-27T00:17:45.370Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-27</time>
+        <a href="/blog/2019/12/31/react%E7%9A%84hook/" class="archive-article-date">
+  	<time datetime="2019-12-31T07:03:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-31</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="欢迎使用-MWeb"><a href="#欢迎使用-MWeb" class="headerlink" title="欢迎使用 MWeb"></a>欢迎使用 MWeb</h1><p>MWeb 是专业的 Markdown 写作、记笔记、静态博客生成软件，目前已支持 Mac，iPad 和 iPhone。MWeb 有以下特色：</p>
-<h2 id="软件本身："><a href="#软件本身：" class="headerlink" title="软件本身："></a>软件本身：</h2><ul>
-<li>使用原生的 macOS 技术打造，追求与系统的完美结合。</li>
-<li>原则上，首先是追求界面简洁和高性能，然后才是强大易用，功能全面。</li>
+        <h4 id="问题由来"><a href="#问题由来" class="headerlink" title="问题由来"></a>问题由来</h4><p>React App 由多个类按照层级，一层层构成，复杂度成倍增长。再加入 Redux，就变得更复杂。</p>
+<p>组件类的几个缺点：</p>
+<ul>
+<li>大型组件很难拆分和重构，也很难测试。</li>
+<li>业务逻辑分散在组件的各个方法之中，导致重复逻辑或关联逻辑。</li>
+<li>组件类引入了复杂的编程模式，比如 render props 和高阶组件。</li>
 </ul>
-<h2 id="Markdown-语法："><a href="#Markdown-语法：" class="headerlink" title="Markdown 语法："></a>Markdown 语法：</h2><ul>
-<li>使用 GitHub Flavored Markdown 语法，简称 GFM 语法。</li>
-<li>支持表格、TOC、LaTeX、代码块、任务列表、脚注等。</li>
-<li>画图库支持 mermaid, viz, ECharts, PlantUML, Sequence, Flow。</li>
-</ul>
-<h2 id="Markdown-辅助："><a href="#Markdown-辅助：" class="headerlink" title="Markdown 辅助："></a>Markdown 辅助：</h2><ul>
-<li>支持截图并粘贴、复制并粘贴、拖拽等方式插入图片并直接显示在编辑器内。</li>
-<li>在兼容 Markdown 语法的情况下支持设置图片宽度。</li>
-<li>好用的表格插入和 LaTeX 书写辅助。</li>
-</ul>
-<h2 id="Markdown-输出："><a href="#Markdown-输出：" class="headerlink" title="Markdown 输出："></a>Markdown 输出：</h2><ul>
-<li>支持导出为图片、HTML、Epub、PDF、RTF、Docx。</li>
-<li>支持发布到 WordPress、支持 Metaweblog API 协议的服务、Wordpress.com、印象笔记（Evernote）、Blogger、Medium、Tumblr、语雀、Ghost、少数派 Matrix。</li>
-<li>图片上传服务（图床）支持 Imgur、七牛云、又拍云、腾讯云 COS、阿里云 OSS、SM.MS和自定义的图床服务。</li>
-</ul>
-<h2 id="Markdown-笔记："><a href="#Markdown-笔记：" class="headerlink" title="Markdown 笔记："></a>Markdown 笔记：</h2><ul>
-<li>强大的文档库支持分类树和标签管理文档，文档可归类于多个分类，可以把分类整个导出为 Epub、PDF 和生成静态网站。非常合适用于笔记、个人知识收集、管理和输出。</li>
-<li>快速笔记：随意增加笔记及图片等素材，支持以天为单位把增加的素材组合在一个文档内，方便整理及记录历史收集情况。</li>
-<li>快速搜索：目前已支持全局快捷键调出搜索。</li>
-</ul>
-<h2 id="外部-Markdown-文档："><a href="#外部-Markdown-文档：" class="headerlink" title="外部 Markdown 文档："></a>外部 Markdown 文档：</h2><ul>
-<li>外部 Markdown 文档使用外部模式管理。外部模式使用目录树的方式编辑和管理你的 Markdown 文档，还能很好的支持 GitBook、Jekyll、Hexo 等等编辑和图片插入。</li>
-</ul>
-<h2 id="MWeb-文档："><a href="#MWeb-文档：" class="headerlink" title="MWeb 文档："></a>MWeb 文档：</h2><p>如果要更详细了解 MWeb，建议你一定要去看一下官网的帮助文档，网址为：<a href="https://zh.mweb.im/help.html" target="_blank" rel="noopener">https://zh.mweb.im/help.html</a>。我们建议在使用文档库之前，一定要阅读一下 <a href="https://zh.mweb.im/mweb-library.html" target="_blank" rel="noopener">MWeb 文档库详细介绍</a> 这篇文章，以便更好的使用文档库。</p>
-<h2 id="帮助我们改进-MWeb"><a href="#帮助我们改进-MWeb" class="headerlink" title="帮助我们改进 MWeb"></a>帮助我们改进 MWeb</h2><p>如果你喜欢 MWeb，想让它变得更好，你可以：</p>
-<ol>
-<li>推荐 MWeb，让更多的人知道。</li>
-<li>给我们发反馈和建议：<a href="mailto:&#99;&#111;&#x64;&#x65;&#114;&#102;&#111;&#x72;&#x61;&#114;&#x74;&#x2b;&#50;&#x33;&#x33;&#51;&#64;&#103;&#x6d;&#97;&#105;&#108;&#x2e;&#99;&#111;&#x6d;">&#99;&#111;&#x64;&#x65;&#114;&#102;&#111;&#x72;&#x61;&#114;&#x74;&#x2b;&#50;&#x33;&#x33;&#51;&#64;&#103;&#x6d;&#97;&#105;&#108;&#x2e;&#99;&#111;&#x6d;</a></li>
-<li>在 Mac App Store 上评价 （如果是在 MAS 上购买的话）。</li>
-</ol>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>React 团队希望，组件不要变成复杂的容器，最好只是数据流的管道。开发者根据需要，组合管道即可。 组件的最佳写法应该是函数，而不是类。</p>
+<p><strong>React Hooks 的设计目的，就是加强版函数组件，完全不使用”类”，就能写出一个全功能的组件。</strong></p>
+<p>Hook 这个单词的意思是”钩子”。</p>
+<p>React Hooks 的意思是，组件尽量写成纯函数，如果需要外部功能和副作用，就用钩子把外部代码”钩”进来。 React Hooks 就是那些钩子。</p>
+<p>你需要什么功能，就使用什么钩子。React 默认提供了一些常用钩子，你也可以封装自己的钩子。</p>
+<p>所有的钩子都是为函数引入外部功能，所以 React 约定，钩子一律使用use前缀命名，便于识别。你要使用 xxx 功能，钩子就命名为 usexxx。</p>
+<p>下面介绍 React 默认提供的四个最常用的钩子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">* useState()</span><br><span class="line">* useContext()</span><br><span class="line">* useReducer()</span><br><span class="line">* useEffect()</span><br></pre></td></tr></table></figure>
+
+<h4 id="useState-：状态钩子"><a href="#useState-：状态钩子" class="headerlink" title="useState()：状态钩子"></a>useState()：状态钩子</h4><p>使用useState()前的代码</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">export default class Button extends Component &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    super();</span><br><span class="line">    this.state &#x3D; &#123; buttonText: &quot;Click me, please&quot; &#125;;</span><br><span class="line">    this.handleClick &#x3D; this.handleClick.bind(this);</span><br><span class="line">  &#125;</span><br><span class="line">  handleClick() &#123;</span><br><span class="line">    this.setState(() &#x3D;&gt; &#123;</span><br><span class="line">      return &#123; buttonText: &quot;Thanks, been clicked!&quot; &#125;;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    const &#123; buttonText &#125; &#x3D; this.state;</span><br><span class="line">    return &lt;button onClick&#x3D;&#123;this.handleClick&#125;&gt;&#123;buttonText&#125;&lt;&#x2F;button&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://codesandbox.io/s/funny-forest-ncv8b" target="_blank" rel="noopener">https://codesandbox.io/s/funny-forest-ncv8b</a></p>
+</blockquote>
+<p>使用useState()后的代码</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useState &#125; from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">export default function  Button()  &#123;</span><br><span class="line">  const  [buttonText, setButtonText] &#x3D;  useState(&quot;Click me,   please&quot;);</span><br><span class="line"></span><br><span class="line">  function handleClick()  &#123;</span><br><span class="line">    return setButtonText(&quot;Thanks, been clicked!&quot;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return  &lt;button  onClick&#x3D;&#123;handleClick&#125;&gt;&#123;buttonText&#125;&lt;&#x2F;button&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://codesandbox.io/s/nifty-waterfall-4i2dq" target="_blank" rel="noopener">https://codesandbox.io/s/nifty-waterfall-4i2dq</a></p>
+</blockquote>
+<p>上面代码中，Button 组件是一个函数，内部使用useState()钩子引入状态。</p>
+<p>useState()这个函数接受状态的初始值，作为参数，上例的初始值为按钮的文字。该函数返回一个数组，数组的第一个成员是一个变量（上例是buttonText），指向状态的当前值。第二个成员是一个函数，用来更新状态，约定是set前缀加上状态的变量名（上例是setButtonText）。</p>
+<h4 id="useContext-：共享状态钩子"><a href="#useContext-：共享状态钩子" class="headerlink" title="useContext()：共享状态钩子"></a>useContext()：共享状态钩子</h4><p>如果需要在组件之间共享状态，可以使用useContext()。</p>
+<p>现在有两个组件 Navbar 和 Messages，我们希望它们之间共享状态。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> &lt;div className&#x3D;&quot;App&quot;&gt;</span><br><span class="line">  &lt;Navbar&#x2F;&gt;</span><br><span class="line">  &lt;Messages&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>第一步就是使用 React Context API，在组件外部建立一个 Context。</p>
+<blockquote>
+<p><code>const AppContext = React.createContext({});</code> </p>
+</blockquote>
+<p>组件封装代码如下。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;AppContext.Provider value&#x3D;&#123;&#123;</span><br><span class="line">  username: &#39;superawesome&#39;</span><br><span class="line">&#125;&#125;&gt;</span><br><span class="line">  &lt;div className&#x3D;&quot;App&quot;&gt;</span><br><span class="line">    &lt;Navbar&#x2F;&gt;</span><br><span class="line">    &lt;Messages&#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;AppContext.Provider&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>上面代码中，AppContext.Provider提供了一个 Context 对象，这个对象可以被子组件共享。</p>
+<p>Navbar 组件的代码如下。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const Navbar &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  const &#123; username &#125; &#x3D; useContext(AppContext);</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className&#x3D;&quot;navbar&quot;&gt;</span><br><span class="line">      &lt;p&gt;AwesomeSite&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;p&gt;&#123;username&#125;&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</blockquote>
+<p>上面代码中，useContext()钩子函数用来引入 Context 对象，从中获取username属性。</p>
+<p>Message 组件的代码也类似。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const Messages &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  const &#123; username &#125; &#x3D; useContext(AppContext)</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div className&#x3D;&quot;messages&quot;&gt;</span><br><span class="line">      &lt;h1&gt;Messages&lt;&#x2F;h1&gt;</span><br><span class="line">      &lt;p&gt;1 message for &#123;username&#125;&lt;&#x2F;p&gt;</span><br><span class="line">      &lt;p className&#x3D;&quot;message&quot;&gt;useContext is awesome!&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://codesandbox.io/s/react-usecontext-redux-0bj1v" target="_blank" rel="noopener">https://codesandbox.io/s/react-usecontext-redux-0bj1v</a></p>
+</blockquote>
+<h4 id="useReducer-：action-钩子"><a href="#useReducer-：action-钩子" class="headerlink" title="useReducer()：action 钩子"></a>useReducer()：action 钩子</h4><p>React 本身不提供状态管理功能，通常需要使用外部库。这方面最常用的库是 Redux。</p>
+<p>Redux 的核心概念是，组件发出 action 与状态管理器通信。状态管理器收到 action 以后，使用 Reducer 函数算出新的状态，Reducer 函数的形式是(state, action) =&gt; newState。</p>
+<p>useReducers()钩子用来引入 Reducer 功能。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const [state, dispatch] &#x3D; useReducer(reducer, initialState);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>上面是useReducer()的基本用法，它接受 Reducer 函数和状态的初始值作为参数，返回一个数组。数组的第一个成员是状态的当前值，第二个成员是发送 action 的dispatch函数。</p>
+<p>下面是一个计数器的例子。用于计算状态的 Reducer 函数如下。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const myReducer &#x3D; (state, action) &#x3D;&gt; &#123;</span><br><span class="line">  switch(action.type)  &#123;</span><br><span class="line">    case(&#39;countUp&#39;):</span><br><span class="line">      return  &#123;</span><br><span class="line">        ...state,</span><br><span class="line">        count: state.count + 1</span><br><span class="line">      &#125;</span><br><span class="line">    default:</span><br><span class="line">      return  state;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>组件代码如下。</p>
+</blockquote>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">function App() &#123;</span><br><span class="line">  const [state, dispatch] &#x3D; useReducer(myReducer, &#123; count:   0 &#125;);</span><br><span class="line">  return  (</span><br><span class="line">    &lt;div className&#x3D;&quot;App&quot;&gt;</span><br><span class="line">      &lt;button onClick&#x3D;&#123;() &#x3D;&gt; dispatch(&#123; type: &#39;countUp&#39; &#125;)&#125;&gt;</span><br><span class="line">        +1</span><br><span class="line">      &lt;&#x2F;button&gt;</span><br><span class="line">      &lt;p&gt;Count: &#123;state.count&#125;&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96; </span><br><span class="line"></span><br><span class="line">https:&#x2F;&#x2F;codesandbox.io&#x2F;s&#x2F;react-usereducer-redux-xqlet</span><br><span class="line"></span><br><span class="line">由于 Hooks 可以提供共享状态和 Reducer 函数，所以它在这些方面可以取代 Redux。但是，它没法提供中间件（middleware）和时间旅行（time travel），如果你需要这两个功能，还是要用 Redux。</span><br><span class="line"></span><br><span class="line">#### useEffect()：副作用钩子</span><br><span class="line">useEffect()用来引入具有副作用的操作，最常见的就是向服务器请求数据。以前，放在componentDidMount里面的代码，现在可以放在useEffect()。</span><br><span class="line"></span><br><span class="line">useEffect()的用法如下。</span><br><span class="line"></span><br><span class="line">上面用法中，useEffect()接受两个参数。第一个参数是一个函数，异步操作的代码放在里面。第二个参数是一个数组，用于给出 Effect 的依赖项，只要这个数组发生变化，useEffect()就会执行。第二个参数可以省略，这时每次组件渲染时，就会执行useEffect()。</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>const Person = ({ personId }) =&gt; {<br>  const [loading, setLoading] = useState(true);<br>  const [person, setPerson] = useState({});</p>
+</blockquote>
+<blockquote>
+<p>  useEffect(() =&gt; {<br>    setLoading(true);<br>    fetch(<code>https://swapi.co/api/people/${personId}/</code>)<br>      .then(response =&gt; response.json())<br>      .then(data =&gt; {<br>        setPerson(data);<br>        setLoading(false);<br>      });<br>  }, [personId])</p>
+</blockquote>
+<blockquote>
+<p>  if (loading === true) {<br>    return <p>Loading …</p><br>  }</p>
+</blockquote>
+<blockquote>
+<p>  return <div><br>    <p>You’re viewing: {person.name}</p><br>    <p>Height: {person.height}</p><br>    <p>Mass: {person.mass}</p><br>  </div><br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>function App() {<br>  const [show, setShow] = useState(“1”);</p>
+</blockquote>
+<blockquote>
+<p>  return (<br>    <div className="App"><br>      <Person personId={show} /><br>      <div><br>        Show:<br>        &lt;button onClick={() =&gt; setShow(“1”)}&gt;Luke</button><br>        &lt;button onClick={() =&gt; setShow(“2”)}&gt;C-3PO</button><br>      </div><br>    </div><br>  );<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;codesandbox.io&#x2F;s&#x2F;react-useeffect-redux-9t3bg</span><br><span class="line"></span><br><span class="line">上面代码中，每当组件参数personId发生变化，useEffect()就会执行。组件第一次渲染时，useEffect()也会执行。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#### 自定义 Hooks</span><br><span class="line"></span><br><span class="line">上例的 Hooks 代码还可以封装起来，变成一个自定义的 Hook，便于共享。</span><br></pre></td></tr></table></figure>
+<p>const usePerson = (personId) =&gt; {<br>  const [loading, setLoading] = useState(true);<br>  const [person, setPerson] = useState({});<br>  useEffect(() =&gt; {<br>    setLoading(true);<br>    fetch(<code>https://swapi.co/api/people/${personId}/</code>)<br>      .then(response =&gt; response.json())<br>      .then(data =&gt; {<br>        setPerson(data);<br>        setLoading(false);<br>      });<br>  }, [personId]);<br>  return [loading, person];<br>};</p>
+</blockquote>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">上面代码中，usePerson()就是一个自定义的 Hook。</span><br><span class="line"></span><br><span class="line">Person 组件就改用这个新的钩子，引入封装的逻辑。</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>const Person = ({ personId }) =&gt; {<br>  const [loading, person] = usePerson(personId);</p>
+</blockquote>
+<blockquote>
+<p>  if (loading === true) {<br>    return <p>Loading …</p>;<br>  }</p>
+</blockquote>
+<blockquote>
+<p>  return (<br>    <div><br>      <p>You’re viewing: {person.name}</p><br>      <p>Height: {person.height}</p><br>      <p>Mass: {person.mass}</p><br>    </div><br>  );<br>};</p>
+<pre><code>
+https://codesandbox.io/s/react-useeffect-redux-ghl7c</code></pre></blockquote>
 
       
 
@@ -288,7 +350,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://wallywanghaoxiang.github.io/blog/2019/12/27/docs/15774058653660/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://wallywanghaoxiang.github.io/blog/2019/12/31/react%E7%9A%84hook/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -302,18 +364,9 @@
   
 <nav id="article-nav">
   
-    <a href="/blog/2019/12/27/%E5%B0%8F%E4%B8%96%E7%95%8C%E7%BD%91%E7%BB%9C/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          小世界网络
-        
-      </div>
-    </a>
   
-  
-    <a href="/blog/2019/12/27/%E8%BF%9C%E8%BF%91%E4%BA%B2%E7%96%8F%E4%B8%8E%E7%94%9F%E6%80%81%E5%B4%A9%E6%BA%83/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">远近亲疏与生态崩溃</div>
+    <a href="/blog/2019/12/29/typescript%E6%8A%80%E6%9C%AF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">typescript技术</div>
       <i class="icon-circle-right"></i>
     </a>
   
