@@ -152,6 +152,112 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-react的mvc框架-从Flux到Redux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2020/01/02/react%E7%9A%84mvc%E6%A1%86%E6%9E%B6-%E4%BB%8EFlux%E5%88%B0Redux/">react的mvc框架-从Flux到Redux</a>
+    </h1>
+  
+
+        
+        <a href="/blog/2020/01/02/react%E7%9A%84mvc%E6%A1%86%E6%9E%B6-%E4%BB%8EFlux%E5%88%B0Redux/" class="archive-article-date">
+  	<time datetime="2020-01-02T03:38:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>react里面最灵活的部分，就是组件之间的数据传递方式，由于灵活就可以应用各种解决方案，所谓适合大型应用，但也增加了各种套餐组合的选择难度，对，是你不懂选套餐，不知道哪种技术栈组合适合你的项目，不是react的错，就像linux内核不管界面应用崩溃的事情，react只做基础的核心代码，至于其他配套方案，都是技术社区和第三方在做，不像VUE，全套解决方案一手提供，想扯个皮都没借口。需要三权分立的民主，需要多个部门间的平衡，react是个好选择。</p>
+<p>但也有好事者，看了react的开发构架不爽了，他们说<br>组件直接传递参数或者事件都需要props一层层代理，对于复杂组件，它可能嵌套的子组件非常多，层级也比较深，那么，如果还采用props链条来维护组件通信或者数据共享，将非常困难，也不利于开发和维护。</p>
+<p>于是他们为react引入了Flux，要把传统MVC的开发套路搬入react这个脑回路新奇的后起之秀身上。本身react的粉就是传统基础不扎实，又寄希望标新立异直接超车的小花们，现在老炮儿们又拿个flux新瓶装老酒了。</p>
+<p>Actions相当于 触发事件<br>Dispatcher   相当于 controller<br>Store 相当于 modle<br>View 就是 view</p>
+<p>Dispatcher代码</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Dispatcher.js</span></span><br><span class="line"><span class="keyword">import</span> &#123;Dispatcher&#125; <span class="keyword">from</span> <span class="string">'flux'</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Dispatcher();</span><br><span class="line"></span><br><span class="line"><span class="comment">// actions</span></span><br><span class="line"><span class="keyword">import</span> AppDispatcher <span class="keyword">from</span> <span class="string">'./Dispatcher.js'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> increment = <span class="function">(<span class="params">number</span>) =&gt;</span> &#123;</span><br><span class="line">  AppDispatcher.dispatch(&#123;</span><br><span class="line">    type: <span class="string">'ADD'</span>,</span><br><span class="line">    value: number</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>跟 php的mvc的controller类似，上面的代码 提供了的一个action入口： ADD 参数 value: number类型</p>
+<p>与传统MVC不同 作为数据层的store虽然需要注册到Dispatcher实例上才能够发挥作用，但store却一般会继承EventEmitter，实现事件监听，发布，卸载。所以从 action 到store 不止通过 Dispatcher传递消息通讯，也可以直接通讯，真的不怕混乱吗？</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> AppDispatcher <span class="keyword">from</span> <span class="string">'./Dispatcher.js'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> value = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> store = <span class="built_in">Object</span>.assign(&#123;&#125;, EventEmitter.prototype, &#123;</span><br><span class="line">  getValue: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  </span><br><span class="line">    <span class="keyword">return</span> value; </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  emitChange: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.emit(<span class="string">'change'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  addChangeListener: <span class="function"><span class="keyword">function</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.on(<span class="string">'change'</span>, callback);</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  removeChangeListener: <span class="function"><span class="keyword">function</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.removeListener(<span class="string">'change'</span>, callback);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">store.dispatchToken = AppDispatcher.register(<span class="function">(<span class="params">action</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (action.type === <span class="string">'ADD'</span>) &#123;</span><br><span class="line">    value = value + action.value;</span><br><span class="line">    store.emitChange();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// your codes</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>view组件中的state一般与Flux store保持一致，如下：</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyView</span> <span class="title">extend</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">    <span class="keyword">this</span>.state = &#123; <span class="attr">count</span>: store.getValue()&#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 声明周期函数（组件加载和卸载），需要调用store的事件注册函数，</span></span><br><span class="line">  <span class="comment">// 将处理组件state变化的函数设置为注册函数的回调方法</span></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    store.addChangeListener(<span class="keyword">this</span>.onChange);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentWillUnmount() &#123;</span><br><span class="line">    store.removeChangeListener(<span class="keyword">this</span>.onChange);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  onChange() &#123;</span><br><span class="line">    <span class="keyword">const</span> newCount = store.getValue();</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">count</span>: newCount&#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 组件的事件函数，需要调用Action触发状态更新</span></span><br><span class="line">  onClickIncrementButton() &#123;</span><br><span class="line">    Actions.increment(text);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</blockquote>
+<p>flux由于逻辑混乱<br>1.一个应用可以拥有多个store，多个store直接可能有依赖关系（相互引用）；<br>2.Store封装了数据和处理数据的逻辑。<br>3.Store绑定了dispatch，但也可以直接侦听事件更新数据</p>
+<p>所以出来了Redux 替代了flux<br>可以，西方技术体系不会因为是旧技术，就要从历史上抹去存在的痕迹的，因此技术的分支繁多，新技术也不会刻意强调旧技术的缺陷，而中国文化，一旦秦一统天下，就要统一度量衡，统一文化，乃至焚书坑儒，消灭所有对手历史存在过得痕迹，这样也省的大家选择的麻烦了。</p>
+<p>github是一种文化，所有存在过的，闪现过的念头都被保留了下来，形成了多元的分支而存在，正确和主流并不是目的，我思故我在才是生命应该留下的痕迹。</p>
+<p>从 flux 进化到 React-Redux，就更像MVC的构架了，思想的轨迹不管从何地出发，最后总是不约而同地归向一处，这就是哲学所在，无论什么学科，抽象到终极都是类似的。</p>
+<p>说到react的技术发展轨迹，也跟当年的JSP一个套路，java技术栈的发展也是jsp–servlet到 spring 的 MVC一路过来的，react不就是当年那个池塘边羞涩的夏雨薇吗？</p>
+<p>直接用代码生成html，两者混在一起，还真有不少人喜欢把事件响应和业务逻辑都写在component里面，看起来就头疼。这些混沌未开天地的原始也被说成面向过程，执行效率高，适合开发大型应用的优点了。这种思路，直接找人写汇编岂不是更爽了。当年的JSP已经被MVC所终结，我们可以借鉴MVC的思想让React-Redux的代码好写又好看。</p>
+<p><strong>React-Redux中应用MVC</strong></p>
+<ol>
+<li><strong>Model 对应Redux store</strong><br>  Redux store由几个数据模块组成，每个模块中的数据在一组页面或者一个业务流程中使用。<br>redux/rootReducer.js</li>
+</ol>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import &#123;reducer as common&#125; from &#39;.&#x2F;commonAction&#39;</span><br><span class="line">import &#123;reducer as online&#125; from &#39;.&#x2F;onlineAction&#39;</span><br><span class="line"></span><br><span class="line">export default combineReducers(&#123;</span><br><span class="line">    common,</span><br><span class="line">    online,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+</blockquote>
+<p><strong>View 对应React component</strong></p>
+<p>Component将数据呈现出来，要尽可能地只做页面显示，其它代码一概抽离，例如：<br>login/index.js</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import &#123;actions&#125; from &#39;.&#x2F;action&#39;;</span><br><span class="line"></span><br><span class="line">class Login extends Component &#123;</span><br><span class="line">  componentWillMount() &#123;</span><br><span class="line">    this.props.clearSession();</span><br><span class="line">  &#125;</span><br><span class="line">render() &#123;</span><br><span class="line">    const p &#x3D; this.props;</span><br><span class="line">    return (</span><br><span class="line">       &lt;div className&#x3D;&quot;form&quot;&gt;</span><br><span class="line">          &lt;div className&#x3D;&quot;input-group&quot;&gt;</span><br><span class="line">             &lt;label&gt;User Name&lt;&#x2F;label&gt;</span><br><span class="line">             &lt;input type&#x3D;&quot;text&quot; value&#x3D;&#123;p.s.username&#125; onChange&#x3D;&#123;e&#x3D;&gt;p.updateFormValue(&#123;username: e.target.value&#125;)&#125; &gt;</span><br><span class="line">           &lt;&#x2F;div&gt;</span><br><span class="line">           &lt;div className&#x3D;&quot;input-group&quot;&gt;</span><br><span class="line">             &lt;label&gt;Password&lt;&#x2F;label&gt;</span><br><span class="line">             &lt;input type&#x3D;&quot;password&quot; value&#x3D;&#123;p.s.password&#125; onChange&#x3D;&#123;e&#x3D;&gt;p.updateFormValue(&#123;password: e.target.value&#125;)&#125; &gt;</span><br><span class="line">           &lt;&#x2F;div&gt;</span><br><span class="line">            &lt;div className&#x3D;&quot;input-group&quot;&gt;</span><br><span class="line">             &lt;button type&#x3D;&quot;button&quot; className&#x3D;&quot;btn btn-block&quot; disabled&#x3D;&#123;!p.s.loginReady&#125; onClick&#x3D;&#123;p.submitLogin&#125; &gt;Login&lt;&#x2F;button&gt;</span><br><span class="line">           &lt;&#x2F;div&gt;</span><br><span class="line">       &lt;&#x2F;div&gt;</span><br><span class="line">)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">export default connect(</span><br><span class="line">  store &#x3D;&gt; (&#123; s: store.online &#125;),</span><br><span class="line">  &#123; ...actions &#125;</span><br><span class="line">)(Login);</span><br></pre></td></tr></table></figure>
+
+</blockquote>
+<p><strong>Controller 对应action，reducer</strong><br>  store中的每个模块都有自己的reducer负责更新数据<br>redux/onlineAction.js</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> types = &#123;</span><br><span class="line">    UPDATE_VALUE: <span class="string">'ONLINE/UPDATE_VALUE'</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> actions = &#123;</span><br><span class="line">    updateValue: <span class="function"><span class="params">values</span> =&gt;</span> <span class="function">(<span class="params">dispatch, getStore</span>) =&gt;</span> &#123;</span><br><span class="line">        dispatch(&#123;<span class="attr">type</span>: types.UPDATE_VALUE, ...values&#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> initStore = &#123;</span><br><span class="line">  username: <span class="string">''</span>,</span><br><span class="line">password: <span class="string">''</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> reducer = <span class="function">(<span class="params">store=&#123;...initStore&#125;, action</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">        <span class="keyword">case</span> types.UPDATE_VALUE:</span><br><span class="line">            <span class="keyword">return</span> &#123;...store, ...action&#125;;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> &#123;...store&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>react主要是负责核心技术，周边都扔给中间件了（主要还是因为facebook财大气粗，有人愿意帮他们捧臭脚，Vue就只能自力更生，自己搞定一切了），所以这是个大生态，中间件要生存就要隐藏部分技术实现的细节，通过技术服务收费来有偿提供，但由于存在着类似VUE那种国产全家桶的市场压力，也不得不开放出一部分技术文档来推广自己的技术方案。</p>
+<p>战略优先于战术，react流行还是vue流行的背后或许是技术市场的争夺战，接下来看看 react最受诟病的 页面热更新是怎么应战的。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2020/01/02/react%E7%9A%84mvc%E6%A1%86%E6%9E%B6-%E4%BB%8EFlux%E5%88%B0Redux/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-react的hook" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -824,7 +930,7 @@ https://codesandbox.io/s/react-useeffect-redux-ghl7c</code></pre></blockquote>
 <h2 id="帮助我们改进-MWeb"><a href="#帮助我们改进-MWeb" class="headerlink" title="帮助我们改进 MWeb"></a>帮助我们改进 MWeb</h2><p>如果你喜欢 MWeb，想让它变得更好，你可以：</p>
 <ol>
 <li>推荐 MWeb，让更多的人知道。</li>
-<li>给我们发反馈和建议：<a href="mailto:&#99;&#x6f;&#100;&#x65;&#114;&#x66;&#x6f;&#x72;&#x61;&#114;&#116;&#43;&#x32;&#x33;&#51;&#51;&#64;&#x67;&#109;&#97;&#105;&#108;&#46;&#99;&#x6f;&#x6d;">&#99;&#x6f;&#100;&#x65;&#114;&#x66;&#x6f;&#x72;&#x61;&#114;&#116;&#43;&#x32;&#x33;&#51;&#51;&#64;&#x67;&#109;&#97;&#105;&#108;&#46;&#99;&#x6f;&#x6d;</a></li>
+<li>给我们发反馈和建议：<a href="mailto:&#x63;&#x6f;&#100;&#101;&#x72;&#102;&#111;&#114;&#x61;&#114;&#116;&#43;&#x32;&#51;&#51;&#x33;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;">&#x63;&#x6f;&#100;&#101;&#x72;&#102;&#111;&#114;&#x61;&#114;&#116;&#43;&#x32;&#51;&#51;&#x33;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;</a></li>
 <li>在 Mac App Store 上评价 （如果是在 MAS 上购买的话）。</li>
 </ol>
 
@@ -1089,7 +1195,7 @@ https://codesandbox.io/s/react-useeffect-redux-ghl7c</code></pre></blockquote>
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 王昊翔
+    		&copy; 2020 王昊翔
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
