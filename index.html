@@ -152,6 +152,78 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-react的热更新" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2020/01/02/react%E7%9A%84%E7%83%AD%E6%9B%B4%E6%96%B0/">react的热更新</a>
+    </h1>
+  
+
+        
+        <a href="/blog/2020/01/02/react%E7%9A%84%E7%83%AD%E6%9B%B4%E6%96%B0/" class="archive-article-date">
+  	<time datetime="2020-01-02T05:04:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>话说原始react只是用js生成页面在不同的生命周期或者不同的事件驱动的时候触发刷新渲染页面，因此画面的部分热更新必然需要借助第三方中间件来实现了，所有对react的攻击，最后都是由中间件第三方来接招，这也是西方技术构成的一个特殊景象。</p>
+<p>实现react热更新的方案<br>1.通过Webpack配置来打开热更新，需要webpack 的 HotModuleReplacement 热加载插件<br>2.加载react-hot-loader 来实现页面局部刷新</p>
+<p>npm install –save-dev react-hot-loader</p>
+<p>在入口文件(index.js)中引入import { AppContainer } from ‘react-hot-loader’;</p>
+<p>如果使用了react-router：<br>step1：引入import Route from ‘./router/‘;<br>step2：</p>
+<p>const render = Component =&gt; {<br>ReactDOM.render(<br>    <AppContainer><br>        <Component /><br>    </AppContainer>,<br>    document.getElementById(“root”));<br>}</p>
+<p>render(Route);</p>
+<p>// Webpack Hot Module Replacement API<br>if (module.hot) {<br>    module.hot.accept(‘./router/‘, () =&gt; {<br>        render(Route);<br>    })<br>}</p>
+<p>step3：在webpack.config.dev.js中配置  react-hot-loader/patch</p>
+<p>entry: [<br>    ‘babel-polyfill’,<br>    ‘react-hot-loader/patch’,<br>    require.resolve(‘./polyfills’),<br>]</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2020/01/02/react%E7%9A%84%E7%83%AD%E6%9B%B4%E6%96%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-react的mvc框架-从Flux到Redux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -930,7 +1002,7 @@ https://codesandbox.io/s/react-useeffect-redux-ghl7c</code></pre></blockquote>
 <h2 id="帮助我们改进-MWeb"><a href="#帮助我们改进-MWeb" class="headerlink" title="帮助我们改进 MWeb"></a>帮助我们改进 MWeb</h2><p>如果你喜欢 MWeb，想让它变得更好，你可以：</p>
 <ol>
 <li>推荐 MWeb，让更多的人知道。</li>
-<li>给我们发反馈和建议：<a href="mailto:&#x63;&#x6f;&#100;&#101;&#x72;&#102;&#111;&#114;&#x61;&#114;&#116;&#43;&#x32;&#51;&#51;&#x33;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;">&#x63;&#x6f;&#100;&#101;&#x72;&#102;&#111;&#114;&#x61;&#114;&#116;&#43;&#x32;&#51;&#51;&#x33;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;</a></li>
+<li>给我们发反馈和建议：<a href="mailto:&#99;&#x6f;&#100;&#101;&#x72;&#102;&#x6f;&#114;&#97;&#114;&#x74;&#x2b;&#50;&#x33;&#51;&#51;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#99;&#x6f;&#100;&#101;&#x72;&#102;&#x6f;&#114;&#97;&#114;&#x74;&#x2b;&#50;&#x33;&#51;&#51;&#64;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;</a></li>
 <li>在 Mac App Store 上评价 （如果是在 MAS 上购买的话）。</li>
 </ol>
 
@@ -1110,81 +1182,10 @@ https://codesandbox.io/s/react-useeffect-redux-ghl7c</code></pre></blockquote>
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2019/12/18/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/blog/2019/12/18/hello-world/" class="archive-article-date">
-  	<time datetime="2019-12-18T05:06:58.485Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2019/12/18/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="extend next" rel="next" href="/blog/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 
